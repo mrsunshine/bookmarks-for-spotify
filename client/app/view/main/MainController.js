@@ -67,8 +67,7 @@ Ext.define('Spotify.view.main.MainController', {
 			record.set('bookmarked', !record.get('bookmarked'));
 
 			if (record.get('bookmarked')) {
-				var newRecord = Ext.create('Spotify.model.BookmarkedTrack', record.getData());
-				store.add(newRecord);
+				store.add(record);
 
 			} else {
 				var recordIndex = store.findExact('id', record.get('id'));
