@@ -181,6 +181,7 @@
          */
         "var": [
             "${package.dir}/sass/var",
+            "${package.dir}/${toolkit.name}/sass/var",
             "${package.dir}/${toolkit.name}/sass/var/sencha-themer-defaults.scss",
             "${package.dir}/${toolkit.name}/sass/var/themer-ui-variables.scss"
         ],
