@@ -125,6 +125,7 @@ client/ext/
 client/build/
 config.json
 public/
+!public/.keep
 
 
 
