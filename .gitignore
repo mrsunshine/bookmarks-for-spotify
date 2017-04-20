@@ -124,6 +124,7 @@ resources/sass/.sass-cache/
 client/ext/
 client/build/
 config.json
+public/
 
 
 
