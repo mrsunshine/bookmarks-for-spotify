@@ -1,6 +1,8 @@
 {
-  "name": "spotify-recently-played-tracks",
+  "name": "bookmarks-for-spotify",
   "version": "1.5.0",
+  "author": "Nils Dehl <mail@nils-dehl.de> (http://nils-dehl.de)",
+  "description": "Bookmarks for Spotify - allows you to bookmark recently played song or audiobook tracks from Spotify.",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
