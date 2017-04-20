@@ -32,7 +32,7 @@ var generateRandomString = function (length) {
 var stateKey = 'spotify_auth_state';
 
 var app = express();
-app.use(favicon(path.join(__dirname, 'public/resources/favicon/', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, config[env].staticDir + '/resources/favicon/', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
