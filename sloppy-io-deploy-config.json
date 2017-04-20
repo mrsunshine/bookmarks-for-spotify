@@ -5,7 +5,7 @@
             "id": "frontend",
             "apps": [
                 {
-                    "id": "bookmarks-for-spotify-app",
+                    "id": "app-server",
                     "domain": {
                         "uri": "$domain"
                     },

@@ -27,7 +27,7 @@ docker_push:
 
 sloppy_change:
 	@echo "make sloppy_change"
-	sloppy change -var=domain:$(domain) -var=version:$(version) -var dockerhub-repository:$(dockerhub-repository) spotify-recently-played-tracks.json
+	sloppy change -var=domain:$(domain) -var=version:$(version) -var dockerhub-repository:$(dockerhub-repository) sloppy-io-deploy-config.json
 
 create_tag:
 	git checkout client/app.json
