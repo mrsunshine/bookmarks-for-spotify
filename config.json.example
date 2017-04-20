@@ -1,0 +1,17 @@
+{
+    "therootcauseapplicationid": "1234",
+    "googleanalytics": "UA-XXXXXXX-1",
+    "frameworkversion": "6.2.1.167",
+    "spotifyClientId": "",
+    "spotifyClientSecret": "",
+    "development": {
+        "port": 3000,
+        "spotifyRedirectUri": "http://localhost:3000/callback",
+        "staticDir": "client"
+    },
+    "production": {
+        "port": 80,
+        "spotifyRedirectUri": "https://domain.tld/callback",
+        "staticDir": "public"
+    }
+}

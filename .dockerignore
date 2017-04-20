@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+client
+.sencha
+.vscode
+.gitignore
+sloppy-io-deploy-config.json
+Makefile
+config.json.example
+README.md
+.idea

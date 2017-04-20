@@ -1,0 +1,24 @@
+{
+    "project": "bookmarks-for-spotify",
+    "services": [
+        {
+            "id": "frontend",
+            "apps": [
+                {
+                    "id": "bookmarks-for-spotify-app",
+                    "domain": {
+                        "uri": "$domain"
+                    },
+                    "mem": 128,
+                    "image": "$dockerhub-repository:$version",
+                    "instances": 2,
+                    "port_mappings": [
+                        {
+                            "container_port": 80
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

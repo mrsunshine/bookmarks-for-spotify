@@ -1,0 +1,25 @@
+.track {
+    display: flex;
+    align-items: stretch;
+    width:100%;
+    .track-info {
+        flex: 1;
+        .track-played-at {
+            font-size: 60%;
+        }
+    }
+    .track-bookmark-icon {
+        width: 40px;
+        font-size: 30px;
+        padding: 20px 0px 0px 0px;
+    }
+}
+
+.info {
+    padding: 0.875em 1em;
+
+    a {
+        color: $base-color;
+    }
+}
+
