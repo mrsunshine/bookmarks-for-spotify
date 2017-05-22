@@ -8,7 +8,7 @@ Ext.define('Spotify.view.Info', {
     scrollable: true,
     items: [
         {
-            html: '<p>This app uses the Spotify API to display your last fifty recently played Spotify tracks. It allowes you to bookmark tracks on your device and open them with Spotify.</p> <br /><br /><p>Contact:<br /><br/>Nils Dehl<br /> Fiedlerweg 11<br />DE-64287 Darmstadt<br /> <a href="mailto:mail@nils-dehl.de">mail@nils-dehl.de</a></p>'
+            html: '<p>This app uses the Spotify API to display your last fifty recently played Spotify tracks. It allows you to bookmark tracks on your device and open them with Spotify.</p> <br /><br /><p>Project on GitHub: <a href="https://github.com/mrsunshine/bookmarks-for-spotify">https://github.com/mrsunshine/bookmarks-for-spotify</a></p><br /><br /><p>Contact:<br /><br/>Nils Dehl<br /> Fiedlerweg 11<br />DE-64287 Darmstadt<br /> <a href="mailto:mail@nils-dehl.de">mail@nils-dehl.de</a></p>'
         },
         {
             xtype: 'container',
