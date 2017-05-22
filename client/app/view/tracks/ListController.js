@@ -11,7 +11,7 @@ Ext.define('Spotify.view.tracks.ListController', {
 	 * @param list
 	 * @param record
 	 */
-	onItemDisclosureHandler: function (list, record) {
+	onItemDisclosureHandler(list, record) {
 		window.open(record.get('link', '_blank'));
 	}
 });

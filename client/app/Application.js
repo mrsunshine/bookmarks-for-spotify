@@ -4,27 +4,27 @@
  * initialization details.
  */
 Ext.define('Spotify.Application', {
-    extend: 'Ext.app.Application',
+	extend: 'Ext.app.Application',
 
-    name: 'Spotify',
+	name: 'Spotify',
 
-    launch: function () {
-        /*
-        // <debug>
-        try {
-            SenchaInspector.init();
-        } catch (e) { }
-        // </debug>
-        */
-    },
+	launch() {
+		/*
+		 // <debug>
+		 try {
+		 SenchaInspector.init();
+		 } catch (e) { }
+		 // </debug>
+		 */
+	},
 
-    onAppUpdate: function () {
-        Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-            function (choice) {
-                if (choice === 'yes') {
-                    window.location.reload();
-                }
-            }
-        );
-    }
+	onAppUpdate() {
+		Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
+			choice => {
+				if (choice === 'yes') {
+					window.location.reload();
+				}
+			}
+		);
+	}
 });

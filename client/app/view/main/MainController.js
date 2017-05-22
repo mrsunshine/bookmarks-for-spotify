@@ -24,18 +24,19 @@ Ext.define('Spotify.view.main.MainController', {
 	 * Lets check if we have a token in localStorage
 	 * if so load the track store
 	 */
-	init: function () {
-		var vm    = this.getViewModel();
-		var token = localStorage.getItem('spotify-auth-token') || false;
+	init() {
+		const vm    = this.getViewModel();
+		const token = localStorage.getItem('spotify-auth-token') || false;
 
 		if (token) {
 			vm.set('token', token);
 
-			Ext.defer(function () {
-				var store = vm.getStore('playedTracks');
-				store.load();
-			}, 300);
-
+			Ext.defer(() => {
+					const store = vm.getStore('playedTracks');
+					store.load();
+				},
+				300
+			);
 		}
 	},
 
@@ -44,9 +45,9 @@ Ext.define('Spotify.view.main.MainController', {
 	 *
 	 * if we get a false we unset the token and redirect to the start
 	 */
-	onPlayedTracksStoreLoad: function (store, records, success) {
+	onPlayedTracksStoreLoad(store, records, success) {
 		if (!success) {
-			var vm = this.getViewModel();
+			const vm = this.getViewModel();
 			vm.set('token', '');
 			localStorage.setItem('spotify-auth-token', '');
 		} else {
@@ -57,10 +58,10 @@ Ext.define('Spotify.view.main.MainController', {
 	/**
 	 * Open link to spotify on item tap
 	 */
-	onItemTap: function (grid, index, target, record, e) {
+	onItemTap(grid, index, target, record, e) {
 		if (e.getTarget('.track-bookmark-icon')) {
-			var vm    = this.getViewModel();
-			var store = vm.getStore('bookmarked');
+			const vm    = this.getViewModel();
+			const store = vm.getStore('bookmarked');
 
 			record.set('bookmarked', !record.get('bookmarked'));
 
@@ -68,7 +69,7 @@ Ext.define('Spotify.view.main.MainController', {
 				store.add(record);
 
 			} else {
-				var recordIndex = store.findExact('id', record.get('id'));
+				const recordIndex = store.findExact('id', record.get('id'));
 				store.removeAt(recordIndex);
 			}
 			store.sync();
@@ -80,10 +81,10 @@ Ext.define('Spotify.view.main.MainController', {
 	/**
 	 * Open link to spotify on item tap
 	 */
-	onBookmarkedItemTap: function (grid, index, target, record, e) {
+	onBookmarkedItemTap(grid, index, target, record, e) {
 		if (e.getTarget('.track-bookmark-icon')) {
-			var vm    = this.getViewModel();
-			var store = vm.getStore('bookmarked');
+			const vm    = this.getViewModel();
+			const store = vm.getStore('bookmarked');
 
 			record.set('bookmarked', !record.get('bookmarked'));
 			store.remove(record);
@@ -91,21 +92,21 @@ Ext.define('Spotify.view.main.MainController', {
 		}
 	},
 
-
-
 	/**
 	 * on token we can load the played tracks store
 	 */
-	onToken: function (token) {
-		var vm = this.getViewModel();
+	onToken(token) {
+		const vm = this.getViewModel();
 
 		vm.set('token', token);
 		localStorage.setItem('spotify-auth-token', token);
 
-		Ext.defer(function () {
-			var store = vm.getStore('playedTracks');
-			store.load();
-		}, 300);
+		Ext.defer(() => {
+				const store = vm.getStore('playedTracks');
+				store.load();
+			},
+			300
+		);
 
 		this.redirectTo('spotify/recently-played-tracks');
 
@@ -114,47 +115,49 @@ Ext.define('Spotify.view.main.MainController', {
 	/**
 	 * mark all bookmarked tracks also as bookmarked in the last played track list
 	 */
-	markBookmarked: function () {
-		var vm              = this.getViewModel();
-		var storeBookmarked = vm.getStore('bookmarked');
-		var storeTracks     = vm.getStore('playedTracks');
+	markBookmarked() {
+		const vm              = this.getViewModel();
+		const storeBookmarked = vm.getStore('bookmarked');
+		const storeTracks     = vm.getStore('playedTracks');
 
-		storeBookmarked.each(function (item) {
-			var record = storeTracks.findRecord('id', item.get('id'));
-			if (record) {
-				record.set('bookmarked', true);
-			}
-		}, this);
+		storeBookmarked.each(item => {
+				const record = storeTracks.findRecord('id', item.get('id'));
+				if (record) {
+					record.set('bookmarked', true);
+				}
+			},
+			this
+		);
 	},
 
 	/**
 	 * redirect to recently played track route if current route is not token
 	 */
-	onActivateSpotifyRecentlyPlayedTracks: function () {
-		var currentToken = Ext.util.History.getToken();
+	onActivateSpotifyRecentlyPlayedTracks() {
+		const currentToken = Ext.util.History.getToken();
 
 		if (!Ext.String.startsWith(currentToken, 'token/')) {
 			this.redirectTo('spotify/recently-played-tracks');
 		}
 	},
 
-	showSpotifyRecentlyPlayedTracks: function () {
+	showSpotifyRecentlyPlayedTracks() {
 		this.activateTab('spotify-recently-played-tracks');
 	},
 
-	onActivateSpotifyBookmarked: function () {
+	onActivateSpotifyBookmarked() {
 		this.redirectTo('spotify/bookmarked');
 	},
 
-	showSpotifyBookmarked: function () {
+	showSpotifyBookmarked() {
 		this.activateTab('spotify-bookmarked');
 	},
 
-	onActivateAppInfo: function () {
+	onActivateAppInfo() {
 		this.redirectTo('app/info');
 	},
 
-	showAppInfo: function () {
+	showAppInfo() {
 		this.activateTab('app-info');
 	},
 
@@ -162,9 +165,9 @@ Ext.define('Spotify.view.main.MainController', {
 	 * activate tab for a given view reference
 	 * @param reference
 	 */
-	activateTab: function (reference) {
-		var tabPanel = this.lookup('main-tabpanel');
-		var tab      = this.lookup(reference);
+	activateTab(reference) {
+		const tabPanel = this.lookup('main-tabpanel');
+		const tab      = this.lookup(reference);
 
 		if (tabPanel.getActiveItem() !== tab) {
 			tabPanel.setActiveItem(tab);
@@ -174,9 +177,9 @@ Ext.define('Spotify.view.main.MainController', {
 	/**
 	 * @param {Ext.dom.Element} component
 	 */
-	onTabPanelPainted: function (component) {
-		var vm              = this.getViewModel();
-		var storeBookmarked = vm.getStore('bookmarked');
+	onTabPanelPainted(component) {
+		const vm              = this.getViewModel();
+		const storeBookmarked = vm.getStore('bookmarked');
 
 		storeBookmarked.on('datachanged', this.updateBookmarkedTabBadgeText, this);
 
@@ -186,25 +189,27 @@ Ext.define('Spotify.view.main.MainController', {
 	/**
 	 * update badge text of the bookmarked tab
 	 */
-	updateBookmarkedTabBadgeText: function() {
-		var vm              = this.getViewModel();
-		var storeBookmarked = vm.getStore('bookmarked');
-		var count = storeBookmarked.getCount();
-		var view = this.lookup('spotify-bookmarked');
+	updateBookmarkedTabBadgeText() {
+		const vm              = this.getViewModel();
+		const storeBookmarked = vm.getStore('bookmarked');
+		const count           = storeBookmarked.getCount();
+		const view            = this.lookup('spotify-bookmarked');
 
 		view.tab.setBadgeText(count);
 	},
 
-	onSpotifyLogout: function() {
-		var vm = this.getViewModel();
+	onSpotifyLogout() {
+		const vm = this.getViewModel();
 
 		vm.set('token', '');
 		localStorage.setItem('spotify-auth-token', '');
 
-		Ext.defer(function () {
-			var store = vm.getStore('playedTracks');
-			store.load();
-		}, 300);
+		Ext.defer(() => {
+				const store = vm.getStore('playedTracks');
+				store.load();
+			},
+			300
+		);
 
 		this.redirectTo('spotify/recently-played-tracks');
 	}

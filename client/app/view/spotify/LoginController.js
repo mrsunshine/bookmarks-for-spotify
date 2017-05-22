@@ -12,14 +12,14 @@ Ext.define('Spotify.view.spotify.LoginController', {
 	/**
 	 * redirect to spotify login
 	 */
-	onSpotifyLogin: function () {
+	onSpotifyLogin() {
 		this.redirectTo('spotify/login');
 	},
 
 	/**
 	 * trigger spotify login
 	 */
-	doSpotifyLogin: function () {
+	doSpotifyLogin() {
 		location.href = '/login';
 	}
 });
