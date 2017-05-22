@@ -193,5 +193,19 @@ Ext.define('Spotify.view.main.MainController', {
 		var view = this.lookup('spotify-bookmarked');
 
 		view.tab.setBadgeText(count);
+	},
+
+	onSpotifyLogout: function() {
+		var vm = this.getViewModel();
+
+		vm.set('token', '');
+		localStorage.setItem('spotify-auth-token', '');
+
+		Ext.defer(function () {
+			var store = vm.getStore('playedTracks');
+			store.load();
+		}, 300);
+
+		this.redirectTo('spotify/recently-played-tracks');
 	}
 });
