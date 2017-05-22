@@ -15,7 +15,7 @@ npm_version:
 
 sencha_build:
 	@echo "make build -- sencha app build production"
-	cd client; sencha-6.5.0.25 app build production
+	cd client; sencha-6.5.0.180 app build production
 
 docker_build:
 	@echo "make docker_build"
