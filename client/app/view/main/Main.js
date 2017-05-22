@@ -9,7 +9,6 @@ Ext.define('Spotify.view.main.Main', {
 	xtype : 'app-main',
 
 	requires: [
-		'Ext.MessageBox',
 		'Ext.layout.VBox',
 		'Ext.tab.Panel',
 		'Spotify.view.Info',
@@ -18,8 +17,7 @@ Ext.define('Spotify.view.main.Main', {
 		'Spotify.view.main.MainModel',
 		'Spotify.view.spotify.Bookmarked',
 		'Spotify.view.spotify.Login',
-		'Spotify.view.spotify.RecentlyPlayed',
-		'Spotify.view.tracks.List'
+		'Spotify.view.spotify.RecentlyPlayed'
 	],
 
 	controller: 'main',

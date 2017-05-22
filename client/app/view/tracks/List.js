@@ -1,23 +1,27 @@
 Ext.define('Spotify.view.tracks.List', {
-    extend: 'Ext.dataview.List',
+	extend: 'Ext.dataview.List',
 
-    xtype: 'spotify-track-list',
-    onItemDisclosure: true,
-    listeners: {
-        disclose: 'onItemDisclosureHandler'
-    },
-    itemTpl:
-    '<div class="track">' +
+	xtype: 'spotify-track-list',
 
-    '<div class="track-bookmark-icon">' +
-    '<span class="x-fa  {[values.bookmarked ? "fa-bookmark" : "fa-bookmark-o"]}" />' +
-    '</div>' +
+	requires: [
+		'Spotify.view.tracks.ListController'
+	],
 
-    '<div class="track-info">' +
-    '<span class="track-played-at">{played_at:date("d.m.Y - H:i")}</span>' +
-    '<br /> {name} - {artist}' +
-    '</div>' +
+	controller      : 'spotify-tracks-list',
+	listeners       : {
+		disclose: 'onItemDisclosureHandler'
+	},
+	onItemDisclosure: true,
+	itemTpl         : '<div class="track">' +
 
-    '</div>'
-    ,
+	'<div class="track-bookmark-icon">' +
+	'<span class="x-fa  {[values.bookmarked ? "fa-bookmark" : "fa-bookmark-o"]}" />' +
+	'</div>' +
+
+	'<div class="track-info">' +
+	'<span class="track-played-at">{played_at:date("d.m.Y - H:i")}</span>' +
+	'<br /> {name} - {artist}' +
+	'</div>' +
+
+	'</div>'
 });

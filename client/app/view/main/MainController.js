@@ -10,13 +10,11 @@ Ext.define('Spotify.view.main.MainController', {
 	alias: 'controller.main',
 
 	requires: [
-		'Ext.util.History',
-		'Spotify.model.BookmarkedTrack'
+		'Ext.util.History'
 	],
 
 	routes: {
 		'token/:token'                  : 'onToken',
-		'spotify/login'                 : 'doSpotifyLogin',
 		'spotify/recently-played-tracks': 'showSpotifyRecentlyPlayedTracks',
 		'spotify/bookmarked'            : 'showSpotifyBookmarked',
 		'app/info'                      : 'showAppInfo'
@@ -80,16 +78,6 @@ Ext.define('Spotify.view.main.MainController', {
 	},
 
 	/**
-	 * On item disclosure tap open spotify track link
-	 *
-	 * @param list
-	 * @param record
-	 */
-	onItemDisclosureHandler: function (list, record) {
-		window.open(record.get('link', '_blank'));
-	},
-
-	/**
 	 * Open link to spotify on item tap
 	 */
 	onBookmarkedItemTap: function (grid, index, target, record, e) {
@@ -103,19 +91,7 @@ Ext.define('Spotify.view.main.MainController', {
 		}
 	},
 
-	/**
-	 * redirect to spotify login
-	 */
-	onSpotifyLogin: function () {
-		this.redirectTo('spotify/login');
-	},
 
-	/**
-	 * trigger spotify login
-	 */
-	doSpotifyLogin: function () {
-		location.href = '/login';
-	},
 
 	/**
 	 * on token we can load the played tracks store
