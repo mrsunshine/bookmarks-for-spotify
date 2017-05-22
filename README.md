@@ -38,7 +38,7 @@ create config.json and adjust values
 Sencha app watch on the client folder (Terminal 1)
 
     cd client
-    sencha-6.5.0.25 app watch
+    sencha-6.5.0.180 app watch
 
 Start local node server (Terminal 2)
 
