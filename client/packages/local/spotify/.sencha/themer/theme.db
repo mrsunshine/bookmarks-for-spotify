@@ -4,6 +4,11 @@
       "name": "toolkit",
       "value": "modern",
       "id": "d8673896-fd0e-4004-a899-a0e38db1e2c2"
+    },
+    {
+      "name": "themerVersion",
+      "value": "1.2.0.41",
+      "id": "a25a9093-91df-4ca5-9b8f-4af8c6da0fa4"
     }
   ],
   "fonts": [],
@@ -64,6 +69,44 @@
       "tooltip": "<b>Default Font Color</b><br/>#FFFFFF",
       "rgba": "rgba(255, 255, 255, 1)",
       "hex": "#FFFFFF"
+    },
+    {
+      "variable": "confirm_color",
+      "displayName": "Confirm Color",
+      "order": 3,
+      "r": 30,
+      "g": 215,
+      "b": 96,
+      "a": 1,
+      "h": 0.3927927927927927,
+      "s": 0.8604651162790697,
+      "v": 0.8431372549019608,
+      "id": "f7c59796-aba6-43df-be7e-3f0148bfcc64",
+      "transparent": false,
+      "sass": "",
+      "base": true,
+      "tooltip": "<b>Confirm Color</b><br/>#1ED760",
+      "rgba": "rgba(30, 215, 96, 1)",
+      "hex": "#1ED760"
+    },
+    {
+      "variable": "alert_color",
+      "displayName": "Alert Color",
+      "order": 4,
+      "r": 255,
+      "g": 30,
+      "b": 0,
+      "a": 1,
+      "h": 0.0196078431372549,
+      "s": 1,
+      "v": 1,
+      "id": "c72dd945-5b27-4f32-9559-d342687a1a69",
+      "transparent": false,
+      "sass": "",
+      "base": true,
+      "tooltip": "<b>Alert Color</b><br/>#FF1E00",
+      "rgba": "rgba(255, 30, 0, 1)",
+      "hex": "#FF1E00"
     }
   ]
 }

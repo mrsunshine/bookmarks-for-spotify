@@ -1,0 +1,24 @@
+// links
+a {
+  color: $link_color;
+  text-decoration: $link_text_decoration;
+
+  &:visited, &.#{$prefix}sencha-themer-visited {
+    color: $link_visited_color;
+    text-decoration: $link_visited_text_decoration;
+  }
+
+  &:hover, &.#{$prefix}sencha-themer-visited:hover {
+    color: $link_hover_color;
+    text-decoration: $link_hover_text_decoration;
+  }
+
+  &:active, &.#{$prefix}sencha-themer-visited:active {
+    color: $link_active_color;
+    text-decoration: $link_active_text_decoration;
+  }
+
+  &.#{$prefix}btn, &:hover.#{$prefix}btn, &:active.#{$prefix}btn {
+    text-decoration: none; // keep buttons from getting a text-decoration on hover
+  }
+}

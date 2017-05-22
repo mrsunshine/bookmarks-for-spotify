@@ -1,3 +1,18 @@
+$enable-font-icons: true;
+
+// links
+$link_color: dynamic(none);
+$link_text_decoration: dynamic(none);
+
+$link_visited_color: dynamic($link_color);
+$link_visited_text_decoration: dynamic($link_text_decoration);
+
+$link_hover_color: dynamic($link_color);
+$link_hover_text_decoration: dynamic(underline);
+
+$link_active_color: dynamic($link_color);
+$link_active_text_decoration: dynamic($link_hover_text_decoration);
+
 $background-color: dynamic(#fff);
 $neutral_color: contrast_color_by($background_color, 12);
 $progress_background_color: contrast_color_by($background_color, 7);
