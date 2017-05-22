@@ -4,7 +4,7 @@
 App online: https://bookmarks-for-spotify.ws4.be/
 
 Uses:
-* Sencha Ext JS 6.2
+* Sencha Ext JS 6.5
 * Sencha CMD
 * Spotify Web API
 * Node JS 7.8
@@ -19,7 +19,7 @@ checkout
 
     git clone git@github.com:mrsunshine/bookmarks-for-spotify.git
 
-copy Sencha Ext JS 6.2.1 sources in the folder
+copy Sencha Ext JS 6.5.0 sources in the folder
 
     client/ext/
 
