@@ -6,11 +6,14 @@ Ext.define('Spotify.view.spotify.RecentlyPlayed', {
 		'Ext.plugin.PullRefresh'
 	],
 
+
 	plugins: [
 		{
 			xclass   : 'Ext.plugin.PullRefresh',
 			mergeData: false,
-			pullText : 'Pull down for to update track list!'
+			pullText : 'Pull down for to update track list!',
+			lastUpdatedText: 'Last updated',
+			loadedText: 'Tracks loaded'
 		}
 	]
 });
