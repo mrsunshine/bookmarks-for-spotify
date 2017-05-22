@@ -52,8 +52,9 @@ app.get('/login', function (req, res) {
       client_id: spotifyClientId,
       scope: scope,
       redirect_uri: spotifyRedirectUri,
-      state: state
-    }));
+      state: state,
+			show_dialog: true
+		}));
 });
 
 app.get('/played', function (req, res) {
