@@ -20,7 +20,7 @@ Ext.define('Spotify.model.PlayedTrack', {
       name: 'artist',
       mapping: 'track.artists',
       convert: function (value, record) {
-        return value[0] ? value[0].name : '';
+        return (Ext.isArray(value) && value[0]) ? value[0].name : '';
       }
     },
     {
