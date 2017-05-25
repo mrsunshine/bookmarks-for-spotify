@@ -39,6 +39,13 @@ Ext.define('Spotify.model.PlayedTrack', {
 			name: 'progress_ms',
 			type: 'int',
 			defaultValue: 0
+		},
+		{
+			name: 'duration_ms',
+			mapping: 'track.duration_ms',
+			convert(value, record) {
+				return parseInt(value / 1000 / 60) + ":" + parseInt(value / 1000 % 60);
+			}
 		}
 	]
 

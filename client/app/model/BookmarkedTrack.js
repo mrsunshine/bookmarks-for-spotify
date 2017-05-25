@@ -1,7 +1,11 @@
 Ext.define('Spotify.model.BookmarkedTrack', {
   extend: 'Ext.data.Model',
 
-  fields: [
+	requires: [
+		'Ext.util.Format'
+	],
+
+	fields: [
     {
       name: 'id',
       type: 'string'
@@ -27,8 +31,10 @@ Ext.define('Spotify.model.BookmarkedTrack', {
     },
     {
       name: 'progress_ms',
-      type: 'int',
-      defaultValue: 0
+
+    },
+    {
+      name: 'duration_ms'
     },
 		{
 			name   : 'uri'

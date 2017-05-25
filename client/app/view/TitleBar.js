@@ -10,6 +10,14 @@ Ext.define('Spotify.view.TitleBar', {
 			// handler: 'onSpotifyLogin'
 		},
 		{
+			iconCls: 'x-fa fa-refresh',
+			align: 'right',
+			handler: 'refreshTracks',
+			bind : {
+				hidden: '{!hasToken}'
+			}
+		},
+		{
 			iconCls: 'x-fa fa-sign-out',
 			align: 'right',
 			handler: 'onSpotifyLogout',

@@ -78,6 +78,7 @@ Ext.define('Spotify.view.main.Main', {
 							items    : {
 								docked: 'bottom',
 								xtype : 'spotify-track-currenttrack',
+								reference: 'spotify-track-currenttrack'
 							}
 						}
 					]

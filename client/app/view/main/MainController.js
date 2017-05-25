@@ -10,7 +10,8 @@ Ext.define('Spotify.view.main.MainController', {
 	alias: 'controller.main',
 
 	requires: [
-		'Ext.util.History'
+		'Ext.util.History',
+		'Spotify.model.BookmarkedTrack'
 	],
 
 	routes: {
@@ -18,6 +19,15 @@ Ext.define('Spotify.view.main.MainController', {
 		'spotify/recently-played-tracks': 'showSpotifyRecentlyPlayedTracks',
 		'spotify/bookmarked'            : 'showSpotifyBookmarked',
 		'app/info'                      : 'showAppInfo'
+	},
+
+	listen: {
+		controller: {
+			'*' : {
+				bookmarkCurrentTrack: 'onBookmarkCurrentTrack',
+				playCurrentTrack: 'onPlayCurrentTrack'
+			}
+		}
 	},
 
 	/**
@@ -79,22 +89,28 @@ Ext.define('Spotify.view.main.MainController', {
 
 		if (e.getTarget('.track-play')) {
 			console.log('play');
-			const vm    = this.getViewModel();
-			const token = vm.get('token');
+			this.playTrack(record.get('uri'), record.get('progress_ms'));
+		}
+	},
 
-			if (token) {
-				Ext.Ajax.request({
-					url: '/play-track?token=' + token + '&uri=' + record.get('uri') + '&progress_ms='+ record.get('progress_ms')
-				}).then((response, opts) => {
-						const obj = Ext.decode(response.responseText);
-						console.dir(obj);
+	onPlayCurrentTrack(currentTrack) {
+		this.playTrack(currentTrack.item.uri, currentTrack.progress_ms);
+	},
 
-						vm.set('currentPlayback', obj);
-					},
-					(response, opts) => {
-						console.log(`server-side failure with status code ${response.status}`);
-					});
-			}
+	playTrack(uri, progress_ms) {
+		const vm    = this.getViewModel();
+		const token = vm.get('token');
+		const me = this;
+		if (token) {
+			Ext.Ajax.request({
+				url: '/play-track?token=' + token + '&uri=' + uri + '&progress_ms='+ progress_ms
+			}).then((response, opts) => {
+					const obj = Ext.decode(response.responseText);
+					me.refreshTracks();
+				},
+				(response, opts) => {
+					console.log(`server-side failure with status code ${response.status}`);
+				});
 		}
 	},
 
@@ -102,13 +118,17 @@ Ext.define('Spotify.view.main.MainController', {
 	 * Open link to spotify on item tap
 	 */
 	onBookmarkedItemTap(grid, index, target, record, e) {
-		if (e.getTarget('.track-bookmark-icon')) {
+		if (e.getTarget('.track-bookmark')) {
 			const vm    = this.getViewModel();
 			const store = vm.getStore('bookmarked');
 
 			record.set('bookmarked', !record.get('bookmarked'));
 			store.remove(record);
 			store.sync();
+		}
+		if (e.getTarget('.track-play')) {
+			console.log('play');
+			this.playTrack(record.get('uri'), record.get('progress_ms'));
 		}
 	},
 
@@ -232,5 +252,37 @@ Ext.define('Spotify.view.main.MainController', {
 		);
 
 		this.redirectTo('spotify/recently-played-tracks');
+	},
+
+	onBookmarkCurrentTrack(currentTrack) {
+
+		const vm    = this.getViewModel();
+		const store = vm.getStore('bookmarked');
+		const recordIndex = store.findExact('id', currentTrack.item.id);
+
+		if (recordIndex === -1) {
+			const record = Ext.create('Spotify.model.BookmarkedTrack', {
+			//	id: currentTrack.item.id,
+				name: currentTrack.item.name,
+				artist: currentTrack.item.artists[0].name,
+				bookmarked: true,
+				progress_ms: parseInt(currentTrack.progress_ms / 1000 / 60) + ":" + parseInt(currentTrack.progress_ms / 1000 % 60),
+				duration_ms: parseInt(currentTrack.item.duration_ms / 1000 / 60) + ":" + parseInt(currentTrack.item.duration_ms / 1000 % 60),
+				uri: currentTrack.item.uri
+
+			});
+			store.add(record);
+		} else {
+			store.removeAt(recordIndex);
+		}
+		store.sync();
+	},
+
+	refreshTracks() {
+		const vm = this.getViewModel();
+		const store = vm.getStore('playedTracks');
+
+		store.load();
+		this.fireEvent('refreshTracks')
 	}
 });

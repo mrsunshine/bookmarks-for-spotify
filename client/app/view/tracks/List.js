@@ -19,7 +19,8 @@ Ext.define('Spotify.view.tracks.List', {
 
 		'<div class="track-info flex">' +
 			'<span class="track-played-at">{played_at:date("d.m.Y - H:i")}</span>' +
-			'<br /> {name} - {artist}' +
+			'<br /> {name} - {artist} ({progress_ms}/{duration_ms})' +
+
 		'</div>' +
 
 		'<div class="track-play hbox cross-center main-center ">' +

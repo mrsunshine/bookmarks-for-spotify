@@ -5,12 +5,19 @@ Ext.define('Spotify.view.tracks.currenttrack.CurrentTrackController', {
 	extend: 'Ext.app.ViewController',
 	alias : 'controller.currenttrack',
 
+	listen: {
+		controller: {
+			'*': {
+				'refreshTracks': 'loadCurrentPlayback'
+			}
+		}
+	},
 	/**
 	 * Called when the view is created
 	 */
 	init() {
-	//	this.loadCurrentPlayback();
 	},
+
 
 	bindings: {
 		onChangeToken: {
@@ -26,7 +33,7 @@ Ext.define('Spotify.view.tracks.currenttrack.CurrentTrackController', {
 
 	loadCurrentPlayback() {
 		const vm    = this.getViewModel();
-	  const token = vm.get('token');
+		const token = vm.get('token');
 
 		if (token) {
 			Ext.Ajax.request({
@@ -41,5 +48,22 @@ Ext.define('Spotify.view.tracks.currenttrack.CurrentTrackController', {
 					console.log(`server-side failure with status code ${response.status}`);
 				});
 		}
+	},
+
+	bookmarkCurrentTrack() {
+		const vm = this.getViewModel();
+		const button = this.lookup('bookmark');
+		if (button.getIconCls() === 'x-fa fa-bookmark-o') {
+			button.setIconCls('x-fa fa-bookmark	');
+		} else {
+			button.setIconCls('x-fa fa-bookmark-o');
+		}
+
+		this.fireEvent('bookmarkCurrentTrack', vm.get('currentPlayback'));
+	},
+
+	playCurrentTrack() {
+		const vm = this.getViewModel();
+		this.fireEvent('playCurrentTrack', vm.get('currentPlayback'));
 	}
 });

@@ -23,6 +23,7 @@ Ext.define('Spotify.view.tracks.currenttrack.CurrentTrack', {
 	items: [
 		{
 			xtype: 'button',
+			reference: 'bookmark',
 			iconCls: 'x-fa fa-bookmark-o',
 			ui: 'plain',
 			width: 64,
@@ -42,10 +43,12 @@ Ext.define('Spotify.view.tracks.currenttrack.CurrentTrack', {
 			bind: {
 				data: {
 					artist: '{currentPlayback.item.artists.0.name}',
-					track: '{currentPlayback.item.name}'
+					track: '{currentPlayback.item.name}',
+					progress_ms: '{progress_ms}',
+					duration_ms: '{duration_ms}'
 				}
 			},
-			tpl: '{track} - {artist}',
+			tpl: '{track} - {artist} ({progress_ms}/{duration_ms})',
 			cls: 'spotify-track-currenttrack-info'
 		},
 		{
@@ -53,7 +56,7 @@ Ext.define('Spotify.view.tracks.currenttrack.CurrentTrack', {
 			iconCls: 'x-fa fa-play-circle-o',
 			ui: 'plain',
 			width: 64,
-			handler: 'playTrack'
+			handler: 'playCurrentTrack'
 		},
 		{
 			xtype: 'progress',
