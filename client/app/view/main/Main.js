@@ -17,7 +17,8 @@ Ext.define('Spotify.view.main.Main', {
 		'Spotify.view.main.MainModel',
 		'Spotify.view.spotify.Bookmarked',
 		'Spotify.view.spotify.Login',
-		'Spotify.view.spotify.RecentlyPlayed'
+		'Spotify.view.spotify.RecentlyPlayed',
+		'Spotify.view.tracks.currenttrack.CurrentTrack'
 	],
 
 	controller: 'main',
@@ -31,7 +32,9 @@ Ext.define('Spotify.view.main.Main', {
 
 	items: [
 		{
-			xtype : 'spotify-titlebar',
+			xtype: 'spotify-titlebar',
+			cls  : 'spotify-titlebar',
+
 			docked: 'top'
 
 		},
@@ -39,11 +42,12 @@ Ext.define('Spotify.view.main.Main', {
 			flex          : 1,
 			reference     : 'main-tabpanel',
 			xtype         : 'tabpanel',
+			cls           : 'spotify-tabpanel',
 			tabBarPosition: 'bottom',
-			listeners: {
+			listeners     : {
 				painted: 'onTabPanelPainted'
 			},
-			items: [
+			items         : [
 				{
 					title    : 'Recently Played',
 					reference: 'spotify-recently-played-tracks',
@@ -70,6 +74,10 @@ Ext.define('Spotify.view.main.Main', {
 							},
 							listeners: {
 								itemtap: 'onItemTap'
+							},
+							items    : {
+								docked: 'bottom',
+								xtype : 'spotify-track-currenttrack',
 							}
 						}
 					]
@@ -78,6 +86,7 @@ Ext.define('Spotify.view.main.Main', {
 				{
 					title    : 'Bookmarked',
 					reference: 'spotify-bookmarked',
+				//	cls      : 'spotify-bookmarked',
 					iconCls  : 'x-fa fa-bookmark',
 					xtype    : 'spotify-bookmarked',
 					bind     : {
@@ -93,6 +102,7 @@ Ext.define('Spotify.view.main.Main', {
 					title    : 'Info',
 					reference: 'app-info',
 					xtype    : 'spotify-info',
+					cls      : 'spotify-info',
 					iconCls  : 'x-fa fa-info',
 					listeners: {
 						activate: 'onActivateAppInfo'

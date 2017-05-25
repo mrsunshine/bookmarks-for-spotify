@@ -16,6 +16,10 @@ Ext.define('Spotify.model.PlayedTrack', {
 			mapping: 'track.external_urls.spotify'
 		},
 		{
+			name   : 'uri',
+			mapping: 'track.uri'
+		},
+		{
 			name   : 'artist',
 			mapping: 'track.artists',
 			convert(value, record) {
@@ -30,6 +34,11 @@ Ext.define('Spotify.model.PlayedTrack', {
 			name        : 'bookmarked',
 			type        : 'bool',
 			defaultValue: false
+		},
+		{
+			name: 'progress_ms',
+			type: 'int',
+			defaultValue: 0
 		}
 	]
 

@@ -24,7 +24,15 @@ Ext.define('Spotify.model.BookmarkedTrack', {
       name: 'bookmarked',
       type: 'bool',
       defaultValue: false
-    }
+    },
+    {
+      name: 'progress_ms',
+      type: 'int',
+      defaultValue: 0
+    },
+		{
+			name   : 'uri'
+		},
   ]
 
 });

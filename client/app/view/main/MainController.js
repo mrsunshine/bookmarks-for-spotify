@@ -59,7 +59,9 @@ Ext.define('Spotify.view.main.MainController', {
 	 * Open link to spotify on item tap
 	 */
 	onItemTap(grid, index, target, record, e) {
-		if (e.getTarget('.track-bookmark-icon')) {
+
+		if (e.getTarget('.track-bookmark')) {
+			console.log('bookmark');
 			const vm    = this.getViewModel();
 			const store = vm.getStore('bookmarked');
 
@@ -73,8 +75,26 @@ Ext.define('Spotify.view.main.MainController', {
 				store.removeAt(recordIndex);
 			}
 			store.sync();
-		} else {
-			window.open(record.get('link', '_blank'));
+		}
+
+		if (e.getTarget('.track-play')) {
+			console.log('play');
+			const vm    = this.getViewModel();
+			const token = vm.get('token');
+
+			if (token) {
+				Ext.Ajax.request({
+					url: '/play-track?token=' + token + '&uri=' + record.get('uri') + '&progress_ms='+ record.get('progress_ms')
+				}).then((response, opts) => {
+						const obj = Ext.decode(response.responseText);
+						console.dir(obj);
+
+						vm.set('currentPlayback', obj);
+					},
+					(response, opts) => {
+						console.log(`server-side failure with status code ${response.status}`);
+					});
+			}
 		}
 	},
 
