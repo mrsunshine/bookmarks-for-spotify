@@ -40,7 +40,6 @@ Ext.define('Spotify.view.tracks.currenttrack.CurrentTrackController', {
 				url: '/current-playback?token=' + token
 			}).then((response, opts) => {
 					const obj = Ext.decode(response.responseText);
-					console.dir(obj);
 
 					vm.set('currentPlayback', obj);
 				},

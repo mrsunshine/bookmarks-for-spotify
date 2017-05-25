@@ -23,9 +23,9 @@ Ext.define('Spotify.view.main.MainController', {
 
 	listen: {
 		controller: {
-			'*' : {
+			'*': {
 				bookmarkCurrentTrack: 'onBookmarkCurrentTrack',
-				playCurrentTrack: 'onPlayCurrentTrack'
+				playCurrentTrack    : 'onPlayCurrentTrack'
 			}
 		}
 	},
@@ -71,7 +71,6 @@ Ext.define('Spotify.view.main.MainController', {
 	onItemTap(grid, index, target, record, e) {
 
 		if (e.getTarget('.track-bookmark')) {
-			console.log('bookmark');
 			const vm    = this.getViewModel();
 			const store = vm.getStore('bookmarked');
 
@@ -88,7 +87,6 @@ Ext.define('Spotify.view.main.MainController', {
 		}
 
 		if (e.getTarget('.track-play')) {
-			console.log('play');
 			this.playTrack(record.get('uri'), record.get('progress_ms'));
 		}
 	},
@@ -100,10 +98,10 @@ Ext.define('Spotify.view.main.MainController', {
 	playTrack(uri, progress_ms) {
 		const vm    = this.getViewModel();
 		const token = vm.get('token');
-		const me = this;
+		const me    = this;
 		if (token) {
 			Ext.Ajax.request({
-				url: '/play-track?token=' + token + '&uri=' + uri + '&progress_ms='+ progress_ms
+				url: '/play-track?token=' + token + '&uri=' + uri + '&progress_ms=' + progress_ms
 			}).then((response, opts) => {
 					const obj = Ext.decode(response.responseText);
 					me.refreshTracks();
@@ -127,7 +125,6 @@ Ext.define('Spotify.view.main.MainController', {
 			store.sync();
 		}
 		if (e.getTarget('.track-play')) {
-			console.log('play');
 			this.playTrack(record.get('uri'), record.get('progress_ms'));
 		}
 	},
@@ -256,19 +253,21 @@ Ext.define('Spotify.view.main.MainController', {
 
 	onBookmarkCurrentTrack(currentTrack) {
 
-		const vm    = this.getViewModel();
-		const store = vm.getStore('bookmarked');
+		const vm          = this.getViewModel();
+		const store       = vm.getStore('bookmarked');
 		const recordIndex = store.findExact('id', currentTrack.item.id);
 
 		if (recordIndex === -1) {
 			const record = Ext.create('Spotify.model.BookmarkedTrack', {
-			//	id: currentTrack.item.id,
-				name: currentTrack.item.name,
-				artist: currentTrack.item.artists[0].name,
-				bookmarked: true,
-				progress_ms: parseInt(currentTrack.progress_ms / 1000 / 60) + ":" + parseInt(currentTrack.progress_ms / 1000 % 60),
-				duration_ms: parseInt(currentTrack.item.duration_ms / 1000 / 60) + ":" + parseInt(currentTrack.item.duration_ms / 1000 % 60),
-				uri: currentTrack.item.uri
+				//	id: currentTrack.item.id,
+				name               : currentTrack.item.name,
+				artist             : currentTrack.item.artists[0].name,
+				bookmarked         : true,
+				progress_ms        : currentTrack.progress_ms,
+				duration_ms        : currentTrack.item.duration_ms,
+				progress_ms_display: parseInt(currentTrack.progress_ms / 1000 / 60) + ":" + parseInt(currentTrack.progress_ms / 1000 % 60),
+				duration_ms_display: parseInt(currentTrack.item.duration_ms / 1000 / 60) + ":" + parseInt(currentTrack.item.duration_ms / 1000 % 60),
+				uri                : currentTrack.item.uri
 
 			});
 			store.add(record);
@@ -279,7 +278,7 @@ Ext.define('Spotify.view.main.MainController', {
 	},
 
 	refreshTracks() {
-		const vm = this.getViewModel();
+		const vm    = this.getViewModel();
 		const store = vm.getStore('playedTracks');
 
 		store.load();

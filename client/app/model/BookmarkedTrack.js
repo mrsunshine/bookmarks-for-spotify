@@ -34,7 +34,14 @@ Ext.define('Spotify.model.BookmarkedTrack', {
 
     },
     {
+      name: 'progress_ms_display',
+
+    },
+    {
       name: 'duration_ms'
+    },
+    {
+      name: 'duration_ms_display'
     },
 		{
 			name   : 'uri'

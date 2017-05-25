@@ -96,11 +96,8 @@ app.get('/current-playback', function (req, res) {
 app.get('/play-track', function (req, res) {
 	var access_token = req.query.token || null;
 	var uri = req.query.uri || null;
-	var progess_ms = req.query.progess_ms || 0;
-
-console.log('access_token: ',access_token);
-console.log('uri: ',uri);
-console.log('progess_ms: ',progess_ms);
+	var progress_ms = req.query.progress_ms || 0;
+	console.log(progress_ms);
 	var options = {
 		url    : 'https://api.spotify.com/v1/me/player/play',
 		headers: {'Authorization': 'Bearer ' + access_token},
@@ -113,11 +110,40 @@ console.log('progess_ms: ',progess_ms);
 	// use the access token to access the Spotify Web API
 	request.put(options, function (error, response, body) {
 		res.setHeader('Content-Type', 'application/json');
-
 		console.log('error: ', error);
 		console.log('status: ', response.statusCode);
-		if (!error && response.statusCode === 200) {
-			res.send(body);
+		if (!error && response.statusCode === 204) {
+			console.log(progress_ms);
+			if (progress_ms) {
+
+				var options = {
+					url    : 'https://api.spotify.com/v1/me/player/seek?position_ms=' + progress_ms,
+					headers: {'Authorization': 'Bearer ' + access_token},
+					json   : true
+				};
+
+				// use the access token to access the Spotify Web API
+				request.put(options, function (error, response, body) {
+					res.setHeader('Content-Type', 'application/json');
+
+					console.log('error: ', error);
+					console.log('status: ', response.statusCode);
+					if (!error && response.statusCode === 204) {
+
+						res.send({
+							success: true
+						});
+					} else {
+						res.send({
+							success: false
+						});
+					}
+				});
+			} else {
+				res.send({
+					success: true
+				});
+			}
 		} else {
 			res.send({
 				success: false
@@ -125,6 +151,7 @@ console.log('progess_ms: ',progess_ms);
 		}
 	});
 });
+
 
 
 app.get('/callback', function (req, res) {
