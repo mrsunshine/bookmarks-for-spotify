@@ -1,17 +1,134 @@
-.track {
-    display: flex;
-    align-items: stretch;
-    width:100%;
+.spotify-track-list {
+  border-bottom: 1px solid #000;
+  .x-listitem-inner-el.x-tool-anchor {
+    flex-grow  : 1 !important;
+  }
+  .track {
+    flex-grow: initial;
+
+    .track-bookmark,
+    .track-play {
+      width   : 64px;
+      font-size: 18px;
+
+      .icon {
+        height: 18px;
+        width: 18px;
+        justify-content: center;
+      }
+    }
     .track-info {
-        flex: 1;
-        .track-played-at {
-            font-size: 60%;
-        }
+      .track-played-at {
+        font-size : 60%;
+      }
     }
-    .track-bookmark-icon {
-        width: 40px;
-        font-size: 30px;
-        padding: 20px 0px 0px 0px;
-    }
+  }
+
+  /*Stack child items vertically*/
+  .vbox {
+    display                : -webkit-flex;
+    display                : -ms-flexbox;
+    display                : flex;
+
+    /*Align children vetically*/
+    -webkit-flex-direction : column;
+    -ms-flex-direction     : column;
+    flex-direction         : column;
+
+    -webkit-align-content  : flex-start;
+    -ms-flex-line-pack     : start;
+    align-content          : flex-start;
+  }
+  /*Stack child items horizontally*/
+  .hbox {
+    display                : -webkit-flex;
+    display                : -ms-flexbox;
+    display                : flex;
+
+    /*Align children horizontally*/
+    -webkit-flex-direction : row;
+    -ms-flex-direction     : row;
+    flex-direction         : row;
+
+    -webkit-align-content  : flex-start;
+    -ms-flex-line-pack     : start;
+    align-content          : flex-start;
+  }
+  /*Stretch item along parent's main-axis*/
+  .flex {
+    -webkit-flex : 1;
+    -ms-flex     : 1;
+    flex         : 1;
+  }
+  /*Stretch item along parent's cross-axis*/
+  .stretch {
+    align-self : stretch;
+  }
+
+  /*Stack child items to the main-axis start*/
+  .main-start {
+    -webkit-justify-content : flex-start;
+    -ms-flex-pack           : flex-start;
+    justify-content         : flex-start;
+  }
+  /*Stack child items to the cross-axis start*/
+  .cross-start {
+    -webkit-align-items   : flex-start;
+    -ms-flex-align        : flex-start;
+    align-items           : flex-start;
+
+    -webkit-align-content : flex-start;
+    -ms-flex-line-pack    : start;
+    align-content         : flex-start;
+  }
+  /*Stack child items to the main-axis center*/
+  .main-center {
+    -webkit-justify-content : center;
+    -ms-flex-pack           : center;
+    justify-content         : center;
+  }
+  /*Stack child items to the cross-axis center*/
+  .cross-center {
+    -webkit-align-items   : center;
+    -ms-flex-align        : center;
+    align-items           : center;
+
+    -webkit-align-content : center;
+    -ms-flex-line-pack    : center;
+    align-content         : center;
+  }
+  /*Stack child items to the main-axis end.*/
+  .main-end {
+    -webkit-justify-content : flex-end;
+    -ms-flex-pack           : end;
+    justify-content         : flex-end;
+  }
+  /*Stack child items to the cross-axis end.*/
+  .cross-end {
+    -webkit-align-items   : flex-end;
+    -ms-flex-align        : flex-end;
+    align-items           : flex-end;
+
+    -webkit-align-content : flex-end;
+    -ms-flex-line-pack    : end;
+    align-content         : flex-end;
+  }
+  /*Stretch child items along the cross-axis*/
+  .cross-stretch {
+    -webkit-align-items   : stretch;
+    -ms-flex-align        : stretch;
+    align-items           : stretch;
+
+    -webkit-align-content : stretch;
+    -ms-flex-line-pack    : stretch;
+    align-content         : stretch;
+  }
+
+  /*Wrap items to next line on main-axis*/
+  .wrap {
+    -webkit-flex-wrap : wrap;
+    -ms-flex-wrap     : wrap;
+    flex-wrap         : wrap;
+  }
 }
 
