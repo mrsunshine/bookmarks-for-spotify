@@ -13,16 +13,19 @@ Ext.define('Spotify.view.main.MainModel', {
 
 	data: {
 		name : 'Spotify',
+		// Spotify auth token
 		token: ''
 	},
 
 	formulas: {
+		// check if token is set
 		hasToken: function (get) {
 			return !(get('token') === '');
 		}
 	},
 
 	stores: {
+		// recently played tracks from Spotify
 		playedTracks: {
 			model    : 'Spotify.model.PlayedTrack',
 			listeners: {
@@ -41,6 +44,8 @@ Ext.define('Spotify.view.main.MainModel', {
 				}
 			}
 		},
+
+		// bookmarked tracks persisted in localstorage
 		bookmarked  : {
 			autoLoad: true,
 			storeId : 'bookmarked',

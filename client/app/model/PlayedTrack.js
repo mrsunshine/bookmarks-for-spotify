@@ -1,3 +1,6 @@
+/**
+ * Model PlayedTrack
+ */
 Ext.define('Spotify.model.PlayedTrack', {
 	extend: 'Ext.data.Model',
 
@@ -23,6 +26,7 @@ Ext.define('Spotify.model.PlayedTrack', {
 			name   : 'artist',
 			mapping: 'track.artists',
 			convert(value, record) {
+				// if artists array exists, use name from first artist in array
 				return (Ext.isArray(value) && value[0]) ? value[0].name : '';
 			}
 		},
@@ -51,12 +55,10 @@ Ext.define('Spotify.model.PlayedTrack', {
 
 		},
 		{
-			name: 'duration_ms'
-		},
-		{
 			name: 'duration_ms_display',
 			mapping: 'track.duration_ms',
 			convert(value, record) {
+				// format ms to "00:00" string
 				return parseInt(value / 1000 / 60) + ":" + parseInt(value / 1000 % 60);
 			}
 		},

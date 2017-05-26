@@ -87,7 +87,6 @@ Ext.define('Spotify.view.main.Main', {
 				{
 					title    : 'Bookmarked',
 					reference: 'spotify-bookmarked',
-				//	cls      : 'spotify-bookmarked',
 					iconCls  : 'x-fa fa-bookmark',
 					xtype    : 'spotify-bookmarked',
 					bind     : {
@@ -97,7 +96,6 @@ Ext.define('Spotify.view.main.Main', {
 						itemtap : 'onBookmarkedItemTap',
 						activate: 'onActivateSpotifyBookmarked'
 					}
-
 				},
 				{
 					title    : 'Info',

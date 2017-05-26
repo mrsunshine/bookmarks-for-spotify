@@ -7,7 +7,6 @@ Ext.define('Spotify.view.TitleBar', {
 	items: [
 		{
 			iconCls: 'x-fa fa-spotify',
-			// handler: 'onSpotifyLogin'
 		},
 		{
 			iconCls: 'x-fa fa-refresh',

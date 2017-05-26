@@ -2,7 +2,6 @@
  * This class is the controller for the main view for the application. It is specified as
  * the "controller" of the Main view class.
  *
- * TODO - Replace this content of this view to suite the needs of your application.
  */
 Ext.define('Spotify.view.main.MainController', {
 	extend: 'Ext.app.ViewController',
@@ -66,10 +65,10 @@ Ext.define('Spotify.view.main.MainController', {
 	},
 
 	/**
-	 * Open link to spotify on item tap
+	 * Open link to Spotify on item tap
 	 */
 	onItemTap(grid, index, target, record, e) {
-
+		// Bookmark track
 		if (e.getTarget('.track-bookmark')) {
 			const vm    = this.getViewModel();
 			const store = vm.getStore('bookmarked');
@@ -85,26 +84,44 @@ Ext.define('Spotify.view.main.MainController', {
 			}
 			store.sync();
 		}
-
+		// start playback track
 		if (e.getTarget('.track-play')) {
-			this.playTrack(record.get('uri'), record.get('progress_ms'));
+			this.playTrack(record.get('uri'), record.get('progress_ms'), record.get('link'));
 		}
 	},
 
+	/**
+	 * on on play current track handler
+	 * -> play track
+	 *
+	 * @param currentTrack
+	 */
 	onPlayCurrentTrack(currentTrack) {
-		this.playTrack(currentTrack.item.uri, currentTrack.progress_ms);
+		this.playTrack(currentTrack.item.uri, currentTrack.progress_ms, currentTrack.item.external_urls.spotify);
 	},
 
-	playTrack(uri, progress_ms) {
+	/**
+	 * play track
+	 * trigger the playback of given track via ajax request
+	 * if progress_ms is given, start playback and seek to position
+	 *
+	 * @param uri
+	 * @param progress_ms
+	 */
+	playTrack(uri, progress_ms, link) {
 		const vm    = this.getViewModel();
 		const token = vm.get('token');
 		const me    = this;
 		if (token) {
+			// open player
+			window.open(link, '_blank');
+			// start playback and seek to position
 			Ext.Ajax.request({
 				url: '/play-track?token=' + token + '&uri=' + uri + '&progress_ms=' + progress_ms
 			}).then((response, opts) => {
 					const obj = Ext.decode(response.responseText);
 					me.refreshTracks();
+					console.log(`server-side success with status code ${response.status}`);
 				},
 				(response, opts) => {
 					console.log(`server-side failure with status code ${response.status}`);
@@ -113,9 +130,10 @@ Ext.define('Spotify.view.main.MainController', {
 	},
 
 	/**
-	 * Open link to spotify on item tap
+	 * Open link to Spotify on item tap
 	 */
 	onBookmarkedItemTap(grid, index, target, record, e) {
+		// bookmark
 		if (e.getTarget('.track-bookmark')) {
 			const vm    = this.getViewModel();
 			const store = vm.getStore('bookmarked');
@@ -124,8 +142,10 @@ Ext.define('Spotify.view.main.MainController', {
 			store.remove(record);
 			store.sync();
 		}
+
+		// play
 		if (e.getTarget('.track-play')) {
-			this.playTrack(record.get('uri'), record.get('progress_ms'));
+			this.playTrack(record.get('uri'), record.get('progress_ms'), record.get('link'));
 		}
 	},
 
@@ -235,6 +255,9 @@ Ext.define('Spotify.view.main.MainController', {
 		view.tab.setBadgeText(count);
 	},
 
+	/**
+	 * Logout from Spotify locally
+	 */
 	onSpotifyLogout() {
 		const vm = this.getViewModel();
 
@@ -251,16 +274,24 @@ Ext.define('Spotify.view.main.MainController', {
 		this.redirectTo('spotify/recently-played-tracks');
 	},
 
+	/**
+	 * Bookmark currently playing track
+	 * persist in localstorage
+	 *
+	 * @param currentTrack
+	 */
 	onBookmarkCurrentTrack(currentTrack) {
-
 		const vm          = this.getViewModel();
 		const store       = vm.getStore('bookmarked');
 		const recordIndex = store.findExact('id', currentTrack.item.id);
 
 		if (recordIndex === -1) {
+
+			console.log(currentTrack);
 			const record = Ext.create('Spotify.model.BookmarkedTrack', {
 				//	id: currentTrack.item.id,
 				name               : currentTrack.item.name,
+				link               : currentTrack.item.external_urls.spotify,
 				artist             : currentTrack.item.artists[0].name,
 				bookmarked         : true,
 				progress_ms        : currentTrack.progress_ms,
@@ -277,6 +308,9 @@ Ext.define('Spotify.view.main.MainController', {
 		store.sync();
 	},
 
+	/**
+	 * refresh track list and fire event
+	 */
 	refreshTracks() {
 		const vm    = this.getViewModel();
 		const store = vm.getStore('playedTracks');

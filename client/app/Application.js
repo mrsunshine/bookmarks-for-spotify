@@ -8,19 +8,11 @@ Ext.define('Spotify.Application', {
 
 	name: 'Spotify',
 
-	launch() {
-		/*
-		 // <debug>
-		 try {
-		 SenchaInspector.init();
-		 } catch (e) { }
-		 // </debug>
-		 */
-	},
+	launch() {},
 
-	onAppUpdate() {
+	onAppUpdate: function () {
 		Ext.Msg.confirm('Application Update', 'This application has an update, reload?',
-			choice => {
+			function (choice) {
 				if (choice === 'yes') {
 					window.location.reload();
 				}

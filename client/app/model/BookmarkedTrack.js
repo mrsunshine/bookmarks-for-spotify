@@ -1,9 +1,8 @@
+/**
+ * Model BookmarkedTrack
+ */
 Ext.define('Spotify.model.BookmarkedTrack', {
   extend: 'Ext.data.Model',
-
-	requires: [
-		'Ext.util.Format'
-	],
 
 	fields: [
     {
