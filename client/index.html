@@ -34,6 +34,8 @@
 		(function () {
 			var logger = window.RC && new RC.Logger({
 					applicationId          : "@@@therootcauseapplicationid@@@",
+					version                : "@@@version@@@",
+					frameworkVersion       : "@@@frameworkversion@@@",
 					captureScreenshot      : true,
 					recordUserActions      : true,
 					logConsoleOutput       : true,
@@ -44,9 +46,7 @@
 					showNotificationOnError: false,
 					showFeedbackButton     : false,
 					showErrorDialog        : true,
-					maxNbrOfReportedErrors : 1,
-					version                : "@@@version@@@",
-					frameworkVersion       : "@@@frameworkversion@@@"
+					maxNbrOfReportedErrors : 1
 				});
 		})();
   </script>
