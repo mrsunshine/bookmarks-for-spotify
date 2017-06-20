@@ -3,10 +3,24 @@
 
 App online: https://bookmarks-for-spotify.ws4.be/
 
-Uses:
+## Features
+
+The app has the following features:
+
+* Authentication against Spotify (auth / logout)
+* Show the users currently playing track
+* Show the users fifty recently played tracks
+* Show the users bookmarked tracks
+* Bookmark the currently playing track with time process position
+* Bookmark a recently played track
+* Open Spotify and start playing a currently playing, recently played or bookmarked track. If the progress time is known it jumps to that position and starts playing from there.
+
+## Technolgy Stack
+
 * Sencha Ext JS 6.5
 * Sencha CMD
 * Spotify Web API
+* NPM Build and Deploy Process
 * Node JS 7.8
 * Docker
 * Sloppy.io
@@ -45,13 +59,17 @@ Start local node server (Terminal 2)
     NODE_ENV=development node bin/www.js
 
 
-## Build and deploy
+## Build / Deploy / Run
 
-The build and deployment is done by the makefile.
+The build and deployment process is done with **npm**.
+Type
 
-    Makefile
+    npm run
 
-Make all will:
+ to see all available run scripts.
+
+
+*deploy:prod* will:
  * create a new version
  * build the Sencha app for production
  * create and push git tag
@@ -61,5 +79,6 @@ Make all will:
 
 Example:
 
-    make all version=1.2.3 domain=domain.tdl dockerhub-repository=user/repository-name
+    APP_VERSION=1.2.3 DOMAIN=domain.tdl DOCKERHUB_REPOSITORY=username/repo-name npm run deploy:prod
+
 
