@@ -121,7 +121,10 @@
         <get-prop file="../config.json" query="therootcauseapplicationid" property="therootcauseapplicationid"/>
         <get-prop file="../config.json" query="googleanalytics" property="googleanalytics"/>
         <get-prop file="../config.json" query="frameworkversion" property="frameworkversion"/>
-        <x-echo>${package_version}</x-echo>
+
+        <!-- App Version Info-->
+        <x-echo>Building APP Version: ${package_version}</x-echo>
+
          <!-- Replace placeholders -->
         <replace file="app.json" token="@@@version@@@" value="${package_version}"/>
         <replace file="index.html" token="@@@version@@@" value="${package_version}"/>
