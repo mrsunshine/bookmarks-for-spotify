@@ -92,26 +92,42 @@
             <target name="-before-build"/><target name="-after-build"/>
     -->
     <!-- replace app.json version placeholder with version from package.json -->
-    <target name="-before-init-local">
-        <exec executable="jq" outputproperty="package_version">
-            <arg line="-r .version ../package.json"/>
-        </exec>
+    <target name="custom-replace-placeholders" depends="init">
+        <!-- Script to get properties from JSON file -->
+        <x-script-def name="get-prop">
+            <attribute name="file"/>
+            <attribute name="query"/>
+            <attribute name="property"/>
+
+            <script src="${cmd.dir}/ant/JSON.js"/>
+            <script src="${cmd.dir}/ant/ant-util.js"/>
+            <![CDATA[
+            var fileName = attributes.get('file') + '';
+            var query = attributes.get('query') + '';
+            var property = attributes.get('property') + '';
+            var object = readJson(fileName);
+            var s;
+            query = query.split('.');
+            while (query.length) {
+                s = query.shift();
+                object = object[s];
+            }
+            project.setNewProperty(property, object);
+            ]]>
+        </x-script-def>
+
+        <!-- Read values and save in vars -->
+        <get-prop file="../package.json" query="version" property="package_version"/>
+        <get-prop file="../config.json" query="therootcauseapplicationid" property="therootcauseapplicationid"/>
+        <get-prop file="../config.json" query="googleanalytics" property="googleanalytics"/>
+        <get-prop file="../config.json" query="frameworkversion" property="frameworkversion"/>
+
+         <!-- Replace placeolders -->
         <replace file="app.json" token="@@@version@@@" value="${package_version}"/>
         <replace file="index.html" token="@@@version@@@" value="${package_version}"/>
-        
-        <exec executable="jq" outputproperty="therootcauseapplicationid">
-            <arg line="-r .therootcauseapplicationid ../config.json"/>
-        </exec>
         <replace file="index.html" token="@@@therootcauseapplicationid@@@" value="${therootcauseapplicationid}"/>
-       
-        <exec executable="jq" outputproperty="googleanalytics">
-            <arg line="-r .googleanalytics ../config.json"/>
-        </exec>
         <replace file="index.html" token="@@@googleanalytics@@@" value="${googleanalytics}"/>
-       
-        <exec executable="jq" outputproperty="frameworkversion">
-            <arg line="-r .frameworkversion ../config.json"/>
-        </exec>
         <replace file="index.html" token="@@@frameworkversion@@@" value="${frameworkversion}"/>
     </target>
+
 </project>
