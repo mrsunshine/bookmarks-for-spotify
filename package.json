@@ -5,7 +5,14 @@
   "description": "Bookmarks for Spotify - allows you to bookmark recently played song or audiobook tracks from Spotify.",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "version:set": "npm --no-git-tag-version version $APP_VERSION",
+    "build:sencha": "cd client && sencha-6.5.0.180 app build production",
+    "build:docker": "docker build -t $DOCKERHUB_REPOSITORY:$APP_VERSION .",
+    "push:docker": "docker push $DOCKERHUB_REPOSITORY:$APP_VERSION",
+    "sloppy:change": "sloppy change -var=domain:$DOMAIN -var=version:$APP_VERSION -var dockerhub-repository:$DOCKERHUB_REPOSITORY sloppy-io-deploy-config.json",
+    "git:tag": "git checkout client/app.json && git checkout client/index.html && git add -A && git commit -m \"v$APP_VERSION\" && git tag v$APP_VERSION && git push && git push origin v$APP_VERSION",
+    "deploy:prod": "npm run version:set && npm run build:sencha && npm run git:tag && npm run build:docker && npm run push:docker && npm run sloppy:change"
   },
   "dependencies": {
     "cookie-parser": "1.3.2",
