@@ -15,7 +15,7 @@ The app has the following features:
 * Bookmark a recently played track
 * Open Spotify and start playing a currently playing, recently played or bookmarked track. If the progress time is known it jumps to that position and starts playing from there.
 
-## Technolgy Stack
+## Technology Stack
 
 * Sencha Ext JS 6.5
 * Sencha CMD

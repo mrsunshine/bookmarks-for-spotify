@@ -122,7 +122,7 @@
         <get-prop file="../config.json" query="googleanalytics" property="googleanalytics"/>
         <get-prop file="../config.json" query="frameworkversion" property="frameworkversion"/>
 
-         <!-- Replace placeolders -->
+         <!-- Replace placeholders -->
         <replace file="app.json" token="@@@version@@@" value="${package_version}"/>
         <replace file="index.html" token="@@@version@@@" value="${package_version}"/>
         <replace file="index.html" token="@@@therootcauseapplicationid@@@" value="${therootcauseapplicationid}"/>
