@@ -6,13 +6,18 @@ Ext.define('Spotify.view.tracks.List', {
 
 	itemTpl:
 	'<div class="track hbox ">' +
+
 		// bookmark/ed icon -> trigger to bookmark or remove bookmark
 		'<div class="track-bookmark hbox cross-center main-center ">' +
+
+			// conditional bookmark icon rendering based on the bookmarked flag of the record
 			'<span class="icon x-fa  {[values.bookmarked ? "fa-bookmark" : "fa-bookmark-o"]}" />' +
 		'</div>' +
 
 		// track infos
 		'<div class="track-info flex">' +
+
+			// date formatting
 			'<span class="track-played-at">{played_at:date("d.m.Y - H:i")}</span>' +
 			'<br /> {name} - {artist} ({progress_ms_display}/{duration_ms_display})' +
 		'</div>' +
