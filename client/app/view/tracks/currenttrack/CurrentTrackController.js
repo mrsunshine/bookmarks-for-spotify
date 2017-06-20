@@ -26,7 +26,8 @@ Ext.define('Spotify.view.tracks.currenttrack.CurrentTrackController', {
 	},
 
 	/**
-	 * when token changes trigger load of current playback
+	 * when token changes, trigger load of current playback
+	 *
 	 * @param data
 	 */
 	onChangeToken(data){
