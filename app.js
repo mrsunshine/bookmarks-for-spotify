@@ -1,24 +1,23 @@
 // Requires
-var express      = require('express');
-var path         = require('path');
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
-var request      = require('request'); // "Request" library
-var querystring  = require('querystring');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var config       = require('./config.json');
+var express              = require('express');
+var path                 = require('path');
+var favicon              = require('serve-favicon');
+var logger               = require('morgan');
+var request              = require('request'); // "Request" library
+var querystring          = require('querystring');
+var cookieParser         = require('cookie-parser');
+var bodyParser           = require('body-parser');
+var config               = require('./config.json');
 var generateRandomString = require('./util/generate-random-string');
-
 
 // ENV
 var env = process.env.NODE_ENV || 'production';
 
 // Spotify
-var spotifyClientId      = config.spotifyClientId;
-var spotifyClientSecret  = config.spotifyClientSecret;
-var spotifyRedirectUri   = config[env].spotifyRedirectUri;
-var spotifyStateKey      = 'spotify_auth_state';
+var spotifyClientId     = config.spotifyClientId;
+var spotifyClientSecret = config.spotifyClientSecret;
+var spotifyRedirectUri  = config[env].spotifyRedirectUri;
+var spotifyStateKey     = 'spotify_auth_state';
 
 // APP
 
@@ -29,7 +28,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, config[env].staticDir)));
-
 
 // Routes start
 app.get('/login', function (req, res) {
@@ -95,14 +93,14 @@ app.get('/current-playback', function (req, res) {
 
 app.get('/play-track', function (req, res) {
 	var access_token = req.query.token || null;
-	var uri = req.query.uri || null;
-	var progress_ms = req.query.progress_ms || 0;
+	var uri          = req.query.uri || null;
+	var progress_ms  = req.query.progress_ms || 0;
 	console.log(progress_ms);
 	var options = {
 		url    : 'https://api.spotify.com/v1/me/player/play',
 		headers: {'Authorization': 'Bearer ' + access_token},
 		json   : true,
-		body: {
+		body   : {
 			"uris": [uri]
 		}
 	};
@@ -113,7 +111,7 @@ app.get('/play-track', function (req, res) {
 		console.log('error: ', error);
 		console.log('status: ', response.statusCode);
 		if (!error && response.statusCode === 204) {
-			console.log(progress_ms);
+			console.log('set progress_ms: ', progress_ms);
 			if (progress_ms) {
 
 				var options = {
@@ -122,23 +120,25 @@ app.get('/play-track', function (req, res) {
 					json   : true
 				};
 
-				// use the access token to access the Spotify Web API
-				request.put(options, function (error, response, body) {
-					res.setHeader('Content-Type', 'application/json');
+				setTimeout(function () {
+					// use the access token to access the Spotify Web API
+					request.put(options, function (error, response, body) {
+						res.setHeader('Content-Type', 'application/json');
 
-					console.log('error: ', error);
-					console.log('status: ', response.statusCode);
-					if (!error && response.statusCode === 204) {
+						console.log('error: ', error);
+						console.log('status: ', response.statusCode);
+						if (!error && response.statusCode === 204) {
 
-						res.send({
-							success: true
-						});
-					} else {
-						res.send({
-							success: false
-						});
-					}
-				});
+							res.send({
+								success: true
+							});
+						} else {
+							res.send({
+								success: false
+							});
+						}
+					});
+				}, 3000);
 			} else {
 				res.send({
 					success: true
@@ -151,8 +151,6 @@ app.get('/play-track', function (req, res) {
 		}
 	});
 });
-
-
 
 app.get('/callback', function (req, res) {
 
