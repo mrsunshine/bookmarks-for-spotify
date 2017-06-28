@@ -2,6 +2,7 @@
 "Bookmarks for Spotify" allows you to bookmark recently played song or audiobook tracks from Spotify.
 
 App online: https://bookmarks-for-spotify.ws4.be/
+Blog Post (en): https://www.sencha.com/blog/full-stack-development-with-ext-js-6-5-bookmarks-for-spotify/
 
 ## Features
 
