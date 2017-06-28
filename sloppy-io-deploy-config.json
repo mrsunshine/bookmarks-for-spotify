@@ -9,9 +9,9 @@
                     "domain": {
                         "uri": "$domain"
                     },
-                    "mem": 64,
+                    "mem": 128,
                     "image": "$dockerhub-repository:$version",
-                    "instances": 1,
+                    "instances": 2,
                     "port_mappings": [
                         {
                             "container_port": 80
