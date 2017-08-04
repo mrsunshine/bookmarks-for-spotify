@@ -16,7 +16,10 @@
                         {
                             "container_port": 80
                         }
-                    ]
+                    ],
+                    "env": {
+                        "HAPROXY_0_REDIRECT_TO_HTTPS": "true"
+                    }
                 }
             ]
         }
