@@ -9,6 +9,7 @@
                     "domain": {
                         "uri": "$domain"
                     },
+                    "ssl": true,
                     "mem": 128,
                     "image": "$dockerhub-repository:$version",
                     "instances": 2,
