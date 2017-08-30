@@ -295,7 +295,7 @@ Ext.define('Spotify.view.main.MainController', {
 		if (recordIndex === -1) {
 
 			const record = Ext.create('Spotify.model.BookmarkedTrack', {
-				//	id: currentTrack.item.id,
+				id: currentTrack.item.id,
 				name               : currentTrack.item.name,
 				link               : currentTrack.item.external_urls.spotify,
 				artist             : currentTrack.item.artists[0].name,
