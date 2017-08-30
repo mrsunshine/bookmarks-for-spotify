@@ -4,22 +4,98 @@
     "coverageFilters": [],
     "scenarios": [
         {
+          "libs": [
+            {
+              "disabled": false,
+              "path": "/test/Unit/lib",
+              "type": "directory"
+            }
+          ],
+          "coverageFilters": [],
+          "sandbox": false,
+          "globals": "*",
+          "directory": "Unit",
+          "name": "Unit"
+        },
+        {
+            "libs": [],
+            "coverageFilters": [],
+            "sandbox": false,
+            "globals": "*",
+            "directory": "AppInit",
+            "name": "App Init"
+        },
+        {
             "libs": [
                 {
                     "disabled": false,
-                    "path": "/test/Unit/lib",
+                    "path": "/test/lib/",
                     "type": "directory"
                 }
             ],
             "coverageFilters": [],
             "sandbox": false,
             "globals": "*",
-            "directory": "Unit",
-            "name": "Unit"
+            "directory": "UnbookmarkFromBookmarklist",
+            "page": "/#token/new-token",
+            "name": "Unbookmark From Bookmarklist"
+        },
+        {
+            "libs": [],
+            "coverageFilters": [],
+            "sandbox": false,
+            "globals": "*",
+            "directory": "AppLogin",
+            "name": "App Login"
+        },
+        {
+            "libs": [
+                {
+                    "disabled": false,
+                    "path": "/test/lib/",
+                    "type": "directory"
+                }
+            ],
+            "coverageFilters": [],
+            "sandbox": false,
+            "globals": "*",
+            "directory": "AfterLogin",
+            "page": "/#token/new-token",
+            "name": "After Login"
+        },
+        {
+            "libs": [
+                {
+                    "disabled": false,
+                    "path": "/test/lib/",
+                    "type": "directory"
+                }
+            ],
+            "coverageFilters": [],
+            "sandbox": false,
+            "globals": "*",
+            "directory": "BookmarkTrack",
+            "page": "/#token/new-token",
+            "name": "Bookmark Track"
+        },
+        {
+            "libs": [
+                {
+                    "disabled": false,
+                    "path": "/test/lib/",
+                    "type": "directory"
+                }
+            ],
+            "coverageFilters": [],
+            "sandbox": false,
+            "globals": "*",
+            "directory": "UnbookmarkTrack",
+            "page": "/#token/new-token",
+            "name": "Unbookmark Track"
         }
     ],
     "pageObjects": [],
-    "launchAppWatch": true,
-    "subjectUrl": "http://localhost:1841/",
+    launchAppWatch": true,
+    "subjectUrl": "http://localhost:1841",
     "globals": "*"
 }
