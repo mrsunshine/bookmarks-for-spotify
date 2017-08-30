@@ -5,6 +5,7 @@
   "description": "Bookmarks for Spotify - allows you to bookmark recently played song or audiobook tracks from Spotify.",
   "private": true,
   "scripts": {
+    "dev": "NODE_ENV=development node bin/www.js",
     "start": "node ./bin/www",
     "version:set": "npm --no-git-tag-version version $APP_VERSION",
     "build:sencha": "cd client && sencha-6.5.0.180 app build production",

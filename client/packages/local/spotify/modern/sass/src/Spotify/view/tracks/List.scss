@@ -1,7 +1,7 @@
 .spotify-track-list {
   border-bottom: 1px solid #000;
-  .x-listitem-inner-el.x-tool-anchor {
-    flex-grow  : 1 !important;
+  .x-innerhtml {
+    flex-grow  : 1;
   }
   .track {
     flex-grow: initial;

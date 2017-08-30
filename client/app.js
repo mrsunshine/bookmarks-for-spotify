@@ -9,7 +9,8 @@ Ext.application({
 	extend: 'Spotify.Application',
 
 	requires: [
-		'Spotify.view.main.Main'
+		'Spotify.view.main.Main',
+		'Spotify.util.Format'
 	],
 
 	// The name of the initial view to create. With the classic toolkit this class

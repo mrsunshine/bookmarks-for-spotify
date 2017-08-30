@@ -4,6 +4,10 @@
 Ext.define('Spotify.model.PlayedTrack', {
 	extend: 'Ext.data.Model',
 
+	requires: [
+		'Spotify.util.Format'
+	],
+
 	fields: [
 		{
 			name   : 'id',
@@ -51,7 +55,7 @@ Ext.define('Spotify.model.PlayedTrack', {
 		},
 		{
 			name: 'progress_ms_display',
-			defaultValue: 0,
+			defaultValue: Spotify.util.Format.msToMinuteSecondString(0)
 
 		},
 		{
@@ -59,7 +63,7 @@ Ext.define('Spotify.model.PlayedTrack', {
 			mapping: 'track.duration_ms',
 			convert(value, record) {
 				// format ms to "00:00" string
-				return parseInt(value / 1000 / 60) + ":" + parseInt(value / 1000 % 60);
+				return Spotify.util.Format.msToMinuteSecondString(value);
 			}
 		},
 	]

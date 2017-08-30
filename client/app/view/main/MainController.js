@@ -10,7 +10,8 @@ Ext.define('Spotify.view.main.MainController', {
 
 	requires: [
 		'Ext.util.History',
-		'Spotify.model.BookmarkedTrack'
+		'Spotify.model.BookmarkedTrack',
+		'Spotify.util.Format'
 	],
 
 	routes: {
@@ -263,14 +264,14 @@ Ext.define('Spotify.view.main.MainController', {
 
 		vm.set('token', '');
 		localStorage.setItem('spotify-auth-token', '');
-
+/*
 		Ext.defer(() => {
 				const store = vm.getStore('playedTracks');
 				store.load();
 			},
 			300
 		);
-
+*/
 		this.redirectTo('spotify/recently-played-tracks');
 	},
 
@@ -296,8 +297,8 @@ Ext.define('Spotify.view.main.MainController', {
 				bookmarked         : true,
 				progress_ms        : currentTrack.progress_ms,
 				duration_ms        : currentTrack.item.duration_ms,
-				progress_ms_display: parseInt(currentTrack.progress_ms / 1000 / 60) + ":" + parseInt(currentTrack.progress_ms / 1000 % 60),
-				duration_ms_display: parseInt(currentTrack.item.duration_ms / 1000 / 60) + ":" + parseInt(currentTrack.item.duration_ms / 1000 % 60),
+				progress_ms_display: Spotify.util.Format.msToMinuteSecondString(currentTrack.progress_ms),
+				duration_ms_display: Spotify.util.Format.msToMinuteSecondString(currentTrack.item.duration_ms),
 				uri                : currentTrack.item.uri
 
 			});
