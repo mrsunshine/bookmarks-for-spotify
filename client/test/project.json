@@ -1,0 +1,25 @@
+{
+    "framework": "jasmine",
+    "libs": [],
+    "coverageFilters": [],
+    "scenarios": [
+        {
+            "libs": [
+                {
+                    "disabled": false,
+                    "path": "/test/Unit/lib",
+                    "type": "directory"
+                }
+            ],
+            "coverageFilters": [],
+            "sandbox": false,
+            "globals": "*",
+            "directory": "Unit",
+            "name": "Unit"
+        }
+    ],
+    "pageObjects": [],
+    "launchAppWatch": true,
+    "subjectUrl": "http://localhost:1841/",
+    "globals": "*"
+}
