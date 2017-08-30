@@ -1,0 +1,86 @@
+{
+    "framework": "jasmine",
+    "libs": [],
+    "coverageFilters": [],
+    "scenarios": [
+        {
+            "libs": [
+                {
+                    "disabled": false,
+                    "path": "/test/AppInit/lib",
+                    "type": "directory"
+                },
+                {
+                    "disabled": false,
+                    "path": "/test/lib/played.json",
+                    "type": "file"
+                },
+                {
+                    "disabled": false,
+                    "path": "/test/lib/currenttrack.json",
+                    "type": "file"
+                }
+            ],
+            "coverageFilters": [],
+            "sandbox": false,
+            "launch": false,
+            "globals": "*",
+            "directory": "AppInit",
+            "name": "AppInit",
+            "page": "#token/new-token"
+        },
+        {
+            "libs": [
+                {
+                    "disabled": false,
+                    "path": "/test/Bookmarks/lib",
+                    "type": "directory"
+                },
+                {
+                    "disabled": false,
+                    "path": "/test/lib/played.json",
+                    "type": "file"
+                },
+                {
+                    "disabled": false,
+                    "path": "/test/lib/currenttrack.json",
+                    "type": "file"
+                }
+            ],
+            "coverageFilters": [],
+            "sandbox": false,
+            "globals": "*",
+            "directory": "Bookmarks",
+            "page": "/#token/new-token",
+            "name": "Bookmarks",
+            "launch": true
+        },
+        {
+            "libs": [
+                {
+                    "disabled": false,
+                    "path": "/test/Reload/lib",
+                    "type": "directory"
+                },
+                {
+                    "disabled": false,
+                    "path": "/test/lib/played.json",
+                    "type": "file"
+                },
+                {
+                    "disabled": false,
+                    "path": "/test/lib/currenttrack.json",
+                    "type": "file"
+                }
+            ],
+            "coverageFilters": [],
+            "sandbox": false,
+            "globals": "*",
+            "directory": "Reload",
+            "page": "/#token/new-token",
+            "name": "Buttons"
+        }
+    ],
+    "pageObjects": [],
+    "subjectUrl": "http://localhost:1841"
+}

@@ -6,7 +6,7 @@
     /**
      * The version of the application.
      */
-    "version": "@@@version@@@",
+    "version": "2.3.6",
     /**
      * The relative path to the application's markup file (html, jsp, asp, etc.).
      */
@@ -312,6 +312,24 @@
      * Settings specific to development builds.
      */
     "development": {
+        "requires" : [
+            "font-awesome",
+            "ux"
+        ],
+        "js": [
+            {
+                "path": "${framework.dir}/build/ext-modern-all-debug.js"
+            },
+            {
+                "path": "app.js",
+                "bundle": true
+            },
+            {
+                // default settings
+                "path": "ext/packages/ux/src/ajax/SimManager.js",
+                "bundle" : true
+            }
+        ],
         "output": {
             "base": "${workspace.build.dir}/${build.environment}/${app.name}",
             "appCache": {

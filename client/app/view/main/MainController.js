@@ -137,8 +137,15 @@ Ext.define('Spotify.view.main.MainController', {
 		if (e.getTarget('.track-bookmark')) {
 			const vm    = this.getViewModel();
 			const store = vm.getStore('bookmarked');
+			const playedStore = vm.getStore('playedTracks');
 
+			playedRecord = playedStore.findRecord("id", record.get('id'), 0, false, true, true);
+
+			if(playedRecord){
+				playedRecord.set('bookmarked', !record.get('bookmarked'));
+			}
 			record.set('bookmarked', !record.get('bookmarked'));
+
 			store.remove(record);
 			store.sync();
 		}
@@ -287,7 +294,6 @@ Ext.define('Spotify.view.main.MainController', {
 
 		if (recordIndex === -1) {
 
-			console.log(currentTrack);
 			const record = Ext.create('Spotify.model.BookmarkedTrack', {
 				//	id: currentTrack.item.id,
 				name               : currentTrack.item.name,
