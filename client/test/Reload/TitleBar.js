@@ -22,7 +22,7 @@ describe("TitleBar", function() {
         })
     })
     
-    it("The refresh button should trigger a callc to refreshTracks", function() {
+    it("The refresh button should trigger a call to refreshTracks", function() {
         
         ST.component("spotify-titlebar button[iconCls=x-fa fa-refresh]").click(0,0).and(button => {
             expect(controller.refreshTracks).toHaveBeenCalled();    

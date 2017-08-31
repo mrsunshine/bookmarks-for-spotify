@@ -1,0 +1,1 @@
+let BOOKMARKED_TRACK = {"id":"1Wi77UHjDtGRHgsyG46yRY","name":"Zeit des Zorns, Kapitel 32","link":"https://open.spotify.com/track/1Wi77UHjDtGRHgsyG46yRY","artist":"Don Winslow","bookmarked":true,"progress_ms":1000,"duration_ms":217565,"progress_ms_display":"0:1","duration_ms_display":"3:37","uri":"spotify:track:1Wi77UHjDtGRHgsyG46yRY","played_at":null}

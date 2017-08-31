@@ -12,12 +12,12 @@
                 },
                 {
                     "disabled": false,
-                    "path": "/test/lib/played.json",
+                    "path": "/test/lib/played.js",
                     "type": "file"
                 },
                 {
                     "disabled": false,
-                    "path": "/test/lib/currenttrack.json",
+                    "path": "/test/lib/currenttrack.js",
                     "type": "file"
                 }
             ],
@@ -38,12 +38,12 @@
                 },
                 {
                     "disabled": false,
-                    "path": "/test/lib/played.json",
+                    "path": "/test/lib/played.js",
                     "type": "file"
                 },
                 {
                     "disabled": false,
-                    "path": "/test/lib/currenttrack.json",
+                    "path": "/test/lib/currenttrack.js",
                     "type": "file"
                 }
             ],
@@ -59,17 +59,17 @@
             "libs": [
                 {
                     "disabled": false,
-                    "path": "/test/Reload/lib",
-                    "type": "directory"
-                },
-                {
-                    "disabled": false,
-                    "path": "/test/lib/played.json",
+                    "path": "/test/lib/played.js",
                     "type": "file"
                 },
                 {
                     "disabled": false,
-                    "path": "/test/lib/currenttrack.json",
+                    "path": "/test/lib/currenttrack.js",
+                    "type": "file"
+                },
+                {
+                    "disabled": false,
+                    "path": "/test/lib/bookmarkedtrack.js",
                     "type": "file"
                 }
             ],
