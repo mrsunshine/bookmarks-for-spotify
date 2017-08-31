@@ -1,0 +1,9 @@
+{
+    "framework": "jasmine",
+    "libs": [],
+    "coverageFilters": [],
+    "scenarios": [],
+    "pageObjects": [],
+    "subjectUrl": "http://localhost:1841",
+    "globals": "*"
+}

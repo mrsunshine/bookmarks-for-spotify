@@ -312,6 +312,23 @@
      * Settings specific to development builds.
      */
     "development": {
+        "requires": [
+            "font-awesome",
+            "ux"
+        ],
+        "js": [
+            {
+                "path": "${framework.dir}/build/ext-modern-all-debug.js"
+            },
+            {
+                "path": "${framework.dir}/packages/ux/src/ajax/SimManager.js",
+                "includeInBundle": true
+            },
+            {
+                "path": "app.js",
+                "bundle": true
+            }
+        ],
         "output": {
             "base": "${workspace.build.dir}/${build.environment}/${app.name}",
             "appCache": {

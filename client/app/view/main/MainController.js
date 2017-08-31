@@ -138,10 +138,16 @@ Ext.define('Spotify.view.main.MainController', {
 		if (e.getTarget('.track-bookmark')) {
 			const vm    = this.getViewModel();
 			const store = vm.getStore('bookmarked');
+			const playedTracksStore = vm.getStore('playedTracks');
 
 			record.set('bookmarked', !record.get('bookmarked'));
 			store.remove(record);
 			store.sync();
+
+			trackRecord = playedTracksStore.findRecord('id', record.get('id'));
+			if (trackRecord) {
+				trackRecord.set('bookmarked', false);
+			}
 		}
 
 		// play
